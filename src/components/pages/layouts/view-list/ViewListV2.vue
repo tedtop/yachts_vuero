@@ -1,27 +1,15 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
-import { retails } from '/@src/data/layouts/view-list-v2'
+// import { retails } from '/@src/data/layouts/view-list-v2'
+import { listings } from '/@src/data/layouts/view-list-v2/apollo_listings'
 
 type TabId = 'active' | 'inactive'
 const activeTab = ref<TabId>('active')
 const filters = ref('')
 
 const filteredData = computed(() => {
-  if (!filters.value) {
-    return retails
-  } else {
-    return retails.filter((item) => {
-      return (
-        item.name.match(new RegExp(filters.value, 'i')) ||
-        item.location.match(new RegExp(filters.value, 'i')) ||
-        ('parking'.match(new RegExp(filters.value, 'i')) && item.comodities.parking) ||
-        ('wifi'.match(new RegExp(filters.value, 'i')) && item.comodities.wifi) ||
-        ('heater'.match(new RegExp(filters.value, 'i')) && item.comodities.heater) ||
-        ('cleaning'.match(new RegExp(filters.value, 'i')) && item.comodities.cleaning)
-      )
-    })
-  }
+  return listings
 })
 </script>
 
@@ -37,7 +25,7 @@ const filteredData = computed(() => {
       </VControl>
     </VField>
 
-    <div class="tabs-inner">
+    <!-- <div class="tabs-inner">
       <div class="tabs">
         <ul>
           <li :class="[activeTab === 'active' && 'is-active']">
@@ -59,7 +47,7 @@ const filteredData = computed(() => {
           <li class="tab-naver"></li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="page-content-inner">
@@ -96,116 +84,34 @@ const filteredData = computed(() => {
       >
         <div class="list-view-inner">
           <TransitionGroup name="list-complete" tag="div">
-            <div v-for="item in filteredData" :key="item.id" class="list-view-item">
+            <div v-for="item in filteredData" :key="item.position" class="list-view-item">
               <div class="list-view-item-inner">
-                <img :src="item.picture" alt="" />
+                <img :src="item.header_image" alt="" />
                 <div class="meta-left">
                   <h3>
                     <span>{{ item.name }}</span>
-                    <span class="rating">
-                      <i
-                        class="fas fa-star"
-                        aria-hidden="true"
-                        :class="[item.rating >= 1 && 'active']"
-                      ></i>
-                      <i
-                        class="fas fa-star"
-                        aria-hidden="true"
-                        :class="[item.rating >= 2 && 'active']"
-                      ></i>
-                      <i
-                        class="fas fa-star"
-                        aria-hidden="true"
-                        :class="[item.rating >= 3 && 'active']"
-                      ></i>
-                      <i
-                        class="fas fa-star"
-                        aria-hidden="true"
-                        :class="[item.rating >= 4 && 'active']"
-                      ></i>
-                      <i
-                        class="fas fa-star"
-                        aria-hidden="true"
-                        :class="[item.rating >= 5 && 'active']"
-                      ></i>
-                    </span>
                   </h3>
+
                   <p>
-                    <i aria-hidden="true" class="iconify" data-icon="feather:map-pin"></i>
-                    <span>{{ item.location }}</span>
+                    <i aria-hidden="true" class="iconify" data-icon="feather:map-pin"></i
+                    >&nbsp;
+                    <span>{{ item.operating_in }}</span>
                   </p>
+
                   <span>
-                    <span>
-                      {{
-                        item.details.rooms > 1
-                          ? `${item.details.rooms} rooms`
-                          : `${item.details.rooms} room`
-                      }}
-                    </span>
+                    <span>Length: {{ item.key_details.length }}</span>
                     <i aria-hidden="true" class="fas fa-circle icon-separator"></i>
-                    <span>
-                      {{
-                        item.details.beds > 1
-                          ? `${item.details.beds} beds`
-                          : `${item.details.beds} bed`
-                      }}
-                    </span>
+                    <span>Sleeps: {{ item.key_details.sleeps }}</span>
                     <i aria-hidden="true" class="fas fa-circle icon-separator"></i>
-                    <span>
-                      {{
-                        item.details.bathrooms > 1
-                          ? `${item.details.bathrooms} bathrooms`
-                          : `${item.details.bathrooms} bathroom`
-                      }}
-                    </span>
+                    <span>Bedrooms: {{ item.key_details.cabins }}</span>
+                    <i aria-hidden="true" class="fas fa-circle icon-separator"></i>
+                    <span>Cabins: {{ item.key_details.cabins }}</span>
+                    <i aria-hidden="true" class="fas fa-circle icon-separator"></i>
+                    <span>Built: {{ item.key_details.built }}</span>
                   </span>
 
                   <div class="icon-list">
-                    <span v-if="item.comodities.parking">
-                      <i aria-hidden="true" class="lnil lnil-car"></i>
-                      <span>Parking</span>
-                    </span>
-                    <span v-if="item.comodities.wifi">
-                      <i aria-hidden="true" class="lnil lnil-signal"></i>
-                      <span>Wifi</span>
-                    </span>
-                    <span v-if="item.comodities.heater">
-                      <i aria-hidden="true" class="lnil lnil-air-flow"></i>
-                      <span>Heater</span>
-                    </span>
-                    <span v-if="item.comodities.cleaning">
-                      <i aria-hidden="true" class="lnil lnil-sun"></i>
-                      <span>Cleaning</span>
-                    </span>
-                    <span
-                      v-if="
-                        item.comodities.other &&
-                        item.comodities.otherThing &&
-                        item.comodities.otherCoolThing &&
-                        item.comodities.otherGreatCoolThing
-                      "
-                    >
-                      <i aria-hidden="true" class="lnil lnil-more"></i>
-                      <span>4 more</span>
-                    </span>
-                    <span
-                      v-else-if="
-                        item.comodities.other &&
-                        item.comodities.otherThing &&
-                        item.comodities.otherCoolThing
-                      "
-                    >
-                      <i aria-hidden="true" class="lnil lnil-more"></i>
-                      <span>3 more</span>
-                    </span>
-                    <span v-else-if="item.comodities.other && item.comodities.otherThing">
-                      <i aria-hidden="true" class="lnil lnil-more"></i>
-                      <span>2 more</span>
-                    </span>
-                    <span v-else-if="item.comodities.other">
-                      <i aria-hidden="true" class="lnil lnil-more"></i>
-                      <span>1 more</span>
-                    </span>
+                    <span>{{ item.key_details.price }} per week</span>
                   </div>
                 </div>
                 <div class="meta-right">
