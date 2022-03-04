@@ -15,7 +15,7 @@ const filteredData = computed(() => {
 
 <template>
   <div class="list-view-toolbar">
-    <VField>
+    <!-- <VField>
       <VControl icon="feather:search">
         <input
           v-model="filters"
@@ -23,7 +23,200 @@ const filteredData = computed(() => {
           placeholder="Search..."
         />
       </VControl>
-    </VField>
+    </VField> -->
+    <div class="column is-6">
+      <VField>
+        <VControl>
+          <Multiselect
+            v-model="filters"
+            placeholder="Location"
+            :options="[
+              'Africa',
+              'Andhra Pradesh',
+              'Arabian Gulf',
+              'Argentina',
+              'Bahamas',
+              'Bahrain',
+              'Balearic Islands',
+              'Baltic',
+              'Bay of Bengal',
+              'Black Sea',
+              'Borneo',
+              'Brazil',
+              'British Columbia',
+              'British Isles',
+              'California',
+              'Campania',
+              'Canada',
+              'Caribbean',
+              'Carolinas',
+              'Cayman Islands',
+              'Central America',
+              'Chile',
+              'Columbia Caribbean',
+              'Columbia Pacific',
+              'Corsica & Sardinia',
+              'Croatia',
+              'Cyprus',
+              'East Asia',
+              'East Coast South America',
+              'East Coast United States',
+              'East Italy',
+              'East Mediterranean',
+              'East Mexico',
+              'East Yucatan',
+              'Ecuador',
+              'Far East Russia',
+              'Far North Alaska',
+              'Florida - East Coast',
+              'Florida - West Coast',
+              'Florida Keys',
+              'French Riviera',
+              'Galapagos Islands',
+              'Georgia',
+              'Great Lakes',
+              'Greater Antilles',
+              'Greece',
+              'Greenland',
+              'Guianas',
+              'Gujarat',
+              'Hudson Bay',
+              'Iberia',
+              'Iceland',
+              'Indian Ocean',
+              'Indonesia',
+              'Iran',
+              'Italian Riviera',
+              'Japan',
+              'Java',
+              'Kalimantan',
+              'Kerala',
+              'Konkan',
+              'Kuwait',
+              'Lazio',
+              'Leeward Antilles',
+              'Leeward Islands',
+              'Lesser Sunda Islands',
+              'Macaronesia',
+              'Madagascar',
+              'Malaysia',
+              'Maldives',
+              'Malta',
+              'Maluku Islands',
+              'Melanasia',
+              'Micronesia',
+              'Middle Atlantic',
+              'Middle East',
+              'Montenegro',
+              'Myanmar',
+              'Netherlands',
+              'New England',
+              'New South Wales Australia',
+              'New Zealand',
+              'Newfoundland',
+              'North Africa',
+              'North China',
+              'North East Africa',
+              'North Korea',
+              'North West Russia',
+              'Northern Europe',
+              'Northern France',
+              'Northern Territory Australia',
+              'Northwest Territories',
+              'Nova Scotia',
+              'Oceania',
+              'Okhotsk',
+              'Oman',
+              'Pakistan',
+              'Peru',
+              'Philippines',
+              'Polynesia',
+              'Qatar',
+              'Quebec',
+              'Queensland Australia',
+              'Russia',
+              'Saudi Arabia East',
+              'Saudi Arabia West',
+              'Scandinavia',
+              'Sea of Cortez',
+              'Siberia',
+              'Sicily & Aeolian Islands',
+              'South Africa',
+              'South Australia',
+              'South Central Alaska',
+              'South Central America',
+              'South China',
+              'South East Asia',
+              'South Korea',
+              'South of France',
+              'South West Alaska',
+              'Spain',
+              'Sulawesi',
+              'Sumatra',
+              'Tamil Nadu',
+              'Thailand',
+              'Trinidad & Tobago',
+              'Turkey',
+              'Turks Caicos',
+              'Tuscany',
+              'United Arab Emirates',
+              'Urals',
+              'Uruguay',
+              'Venezuela',
+              'Vietnam',
+              'West Australia',
+              'West Coast South America',
+              'West Coast United States',
+              'West Indian Ocean',
+              'West Mediterranean',
+              'West Mexico',
+              'West Yucatan',
+              'Western Gulf',
+              'Western New guinea',
+              'Windward Islands',
+              'Yemen',
+            ]"
+          />
+        </VControl>
+      </VField>
+    </div>
+    <div class="column is-2">
+      <VField>
+        <VControl>
+          <Multiselect
+            v-model="filters"
+            placeholder="Length"
+            :options="[
+              '30-50 ft',
+              '50-100 ft',
+              '100-150 ft',
+              '150-200 ft',
+              '200-250 ft',
+              '250-300 ft',
+              '300+ ft',
+            ]"
+          />
+        </VControl>
+      </VField>
+    </div>
+    <div class="column is-2">
+      <VField>
+        <VControl>
+          <Multiselect
+            v-model="filters"
+            placeholder="Type"
+            :options="[
+              'Sailboat',
+              'Catamaran',
+              'Houseboat',
+              'Motorboat',
+              'Motor yacht',
+              'Power catamaran',
+            ]"
+          />
+        </VControl>
+      </VField>
+    </div>
 
     <!-- <div class="tabs-inner">
       <div class="tabs">

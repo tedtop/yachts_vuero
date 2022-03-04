@@ -53,7 +53,7 @@ watchEffect(() => {
     </div>
 
     <div class="navbar-menu" :class="[isMobileNavOpen && 'is-active']">
-      <div class="navbar-start">
+      <!-- <div class="navbar-start">
         <div class="navbar-item">
           <a
             href="https://themeforest.net/item/vuero-vuejs-3-admin-and-webapp-ui-kit/31053035"
@@ -106,9 +106,9 @@ watchEffect(() => {
         <div class="navbar-item">
           <a href="https://cssninja.io" class="nav-link">Support</a>
         </div>
-      </div>
+      </div> -->
 
-      <div class="navbar-end">
+      <!-- <div class="navbar-end">
         <div class="navbar-item is-theme-toggle">
           <label class="theme-toggle">
             <input
@@ -132,6 +132,36 @@ watchEffect(() => {
         <div class="navbar-item">
           <VButton :to="{ name: 'auth-signup-1' }" color="primary" rounded raised>
             <strong>Sign up</strong>
+          </VButton>
+        </div>
+      </div> -->
+
+      <div class="navbar-end">
+        <div class="navbar-item is-theme-toggle">
+          <label class="theme-toggle">
+            <input
+              id="navbar-night-toggle--daynight"
+              v-model="darkmode.isDark"
+              type="checkbox"
+            />
+            <span class="toggler">
+              <span class="dark">
+                <i aria-hidden="true" class="iconify" data-icon="feather:moon"></i>
+              </span>
+              <span class="light">
+                <i aria-hidden="true" class="iconify" data-icon="feather:sun"></i>
+              </span>
+            </span>
+          </label>
+        </div>
+        <div class="navbar-item">
+          <VButton
+            :to="{ name: 'sidebar-layouts-form-layouts-1' }"
+            color="primary"
+            rounded
+            raised
+          >
+            <strong>Request a Quote</strong>
           </VButton>
         </div>
       </div>
